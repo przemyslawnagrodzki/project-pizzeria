@@ -56,6 +56,7 @@ class Product {
   constructor(id, data){
     const thisProduct = this;
     thisProduct.renderInMenu();
+    thisProduct.initAccordion();
     console.log('new Product', thisProduct);
     thisProduct.id = id;
     thisProduct.data = data;
@@ -72,6 +73,9 @@ class Product {
     console.log(menuContainer)
     /* add element to menu container */ 
     menuContainer.appendChild(thisProduct.element);
+  }
+  initAccordion(){
+    const thisProduct = this
   }
 }
 
