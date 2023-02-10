@@ -53,10 +53,25 @@
   };
 
 class Product {
-  constructor(){
+  constructor(id, data){
     const thisProduct = this;
-
+    thisProduct.renderInMenu();
     console.log('new Product', thisProduct);
+    thisProduct.id = id;
+    thisProduct.data = data;
+  }
+  renderInMenu(){
+    const thisProduct = this;
+    /* generate HTML based on template */
+    const generatedHTML = templates.menuProduct(thisProduct.data)
+    console.log(generatedHTML)
+    /* Create element using utilis.createElementFromHTML */
+    thisProduct.element = utils.createDOMFromHTML(generatedHTML);
+    /* Find container of menu */
+    const menuContainer = document.querySelector(select.containerOf.menu);
+    console.log(menuContainer)
+    /* add element to menu container */ 
+    menuContainer.appendChild(thisProduct.element);
   }
 }
 
