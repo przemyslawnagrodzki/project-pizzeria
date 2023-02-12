@@ -56,6 +56,7 @@ class Product {
   constructor(id, data){
     const thisProduct = this;
     thisProduct.renderInMenu();
+    thisProduct.getElements();
     thisProduct.initAccordion();
     console.log('new Product', thisProduct);
     thisProduct.id = id;
@@ -74,6 +75,15 @@ class Product {
     /* add element to menu container */ 
     menuContainer.appendChild(thisProduct.element);
   }
+  getElements(){
+    const thisProduct = this;
+  
+    thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+    thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
+    thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
+    thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
+    thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+  }
   initAccordion(){
     const thisProduct = this
 
@@ -81,7 +91,7 @@ class Product {
     const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
     console.log(clickableTrigger)
     /* START: add event listener to clickable trigger on event click */
-    clickableTrigger.addEventListener('click', function(event) {
+    thisProduct.accordionTrigger.addEventListener('click', function(event) {
       /* prevent default action for event */
     event.preventDefault();  
       /* find active product (product that has active class) */
