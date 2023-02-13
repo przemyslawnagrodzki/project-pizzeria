@@ -151,17 +151,30 @@ class Product {
       // check if there is param with a name of paramId in formData and if it includes optionId
       if(formData[paramId] && formData[paramId].includes(optionId)) {
       // Check if the option is not default //
-      if(!option.default) {
+      if(!option.default == true) {
 
       // Add option price to price variable //
-        price += option.price
+        price = price += option.price
       }
       // Check if the the option is default //
-      else if(option.default){
+      else if(option.default == true){
       // reduce price variable //
-       price -= option.price  
+       price = price -= option.price  
       }
     }
+      // Look for the image suitable for category and option //
+      const suitableImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId)
+      console.log(suitableImage)
+      // Add active class if the option is chosen //
+      if(suitableImage){
+        if(formData[paramId] && formData[paramId].includes(optionId)){
+          suitableImage.classList.add('active');
+        }
+        // Remove active class if the opton is not chosen //
+        else {
+          suitableImage.classList.remove('active')
+        }       
+      }
   }
   }
   // update calculated price in the HTML
