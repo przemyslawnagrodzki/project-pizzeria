@@ -168,11 +168,11 @@ class Product {
       // Add active class if the option is chosen //
       if(suitableImage){
         if(formData[paramId] && formData[paramId].includes(optionId)){
-          suitableImage.classList.add('active');
+          suitableImage.classList.add(classNames.menuProduct.imageVisible);
         }
         // Remove active class if the opton is not chosen //
         else {
-          suitableImage.classList.remove('active')
+          suitableImage.classList.remove(classNames.menuProduct.imageVisible)
         }       
       }
   }
