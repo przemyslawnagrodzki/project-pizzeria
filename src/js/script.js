@@ -182,6 +182,9 @@ class Product {
       }
   }
   }
+  /* Multiply price by amount*/
+  price *= thisProduct.amountWidget.value;  
+  
   // update calculated price in the HTML
   thisProduct.priceElem.innerHTML = price;
 
@@ -190,6 +193,10 @@ class Product {
     const thisProduct = this
 
     thisProduct.amountWidget = new amountWidget(thisProduct.amountWidgetElem)
+  
+    thisProduct.amountWidgetElem.addEventListener('updated', function() {
+    thisProduct.processOrder();
+    })
   }
   }
 
@@ -239,6 +246,12 @@ class Product {
         event.preventDefault()
         thisWidget.setValue(thisWidget.value + 1)
       })
+    }
+    announce(){
+      const thisWidget = this
+
+      const event = new Event ('updated')
+      thisWidget.element.dispatchEvent(event)
     }
   }
 
