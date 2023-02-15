@@ -63,20 +63,21 @@ class Product {
     thisProduct.getElements();
     thisProduct.initAccordion();
     thisProduct.initOrderForm();
+    thisProduct.initAmountWidget();
     thisProduct.processOrder();
-    console.log('new Product', thisProduct);
+ //   console.log('new Product', thisProduct);
     
   }
   renderInMenu(){
     const thisProduct = this;
     /* generate HTML based on template */
     const generatedHTML = templates.menuProduct(thisProduct.data)
-    console.log(generatedHTML)
+   // console.log(generatedHTML)
     /* Create element using utilis.createElementFromHTML */
     thisProduct.element = utils.createDOMFromHTML(generatedHTML);
     /* Find container of menu */
     const menuContainer = document.querySelector(select.containerOf.menu);
-    console.log(menuContainer)
+   // console.log(menuContainer)
     /* add element to menu container */ 
     menuContainer.appendChild(thisProduct.element);
   }
@@ -89,13 +90,14 @@ class Product {
     thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
     thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
     thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper)
+    thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget)
   }
   initAccordion(){
     const thisProduct = this
 
     /* find the clickable trigger (the element that should react to clicking) */
     const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
-    console.log(clickableTrigger)
+  //  console.log(clickableTrigger)
     /* START: add event listener to clickable trigger on event click */
     thisProduct.accordionTrigger.addEventListener('click', function(event) {
       /* prevent default action for event */
@@ -103,7 +105,7 @@ class Product {
       /* find active product (product that has active class) */
     const activeProduct = document.querySelectorAll(select.all.menuProductsActive)  
       /* if there is active product and it's not thisProduct.element, remove class active from it */
-    if(activeProduct != thisProduct.element) {
+    if(activeProduct && activeProduct != thisProduct.element) {
       activeProduct.classList.remove('active')
     } 
       /* toggle active class on thisProduct.element */
@@ -112,7 +114,7 @@ class Product {
   }
   initOrderForm(){
     const thisProduct = this;
-    console.log(this.initOrderForm)
+  //  console.log(this.initOrderForm)
     thisProduct.form.addEventListener('submit', function(event){
       event.preventDefault();
       thisProduct.processOrder();
@@ -131,11 +133,11 @@ class Product {
   }
   processOrder(){
     const thisProduct = this;
-    console.log(this.processOrder)
+  //  console.log(this.processOrder)
     
     // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
   const formData = utils.serializeFormToObject(thisProduct.form);
-  console.log('formData', formData);
+ // console.log('formData', formData);
 
   // set price to default price
   let price = thisProduct.data.price;
@@ -144,13 +146,13 @@ class Product {
   for(let paramId in thisProduct.data.params) {
     // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
     const param = thisProduct.data.params[paramId];
-    console.log(paramId, param);
+   // console.log(paramId, param);
 
     // for every option in this category
     for(let optionId in param.options) {
       // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
       const option = param.options[optionId];
-      console.log(optionId, option);
+     // console.log(optionId, option);
       // check if there is param with a name of paramId in formData and if it includes optionId
       if(formData[paramId] && formData[paramId].includes(optionId)) {
       // Check if the option is not default //
@@ -167,7 +169,7 @@ class Product {
     }
       // Look for the image suitable for category and option //
       const suitableImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId)
-      console.log(suitableImage)
+    //  console.log(suitableImage)
       // Add active class if the option is chosen //
       if(suitableImage){
         if(formData[paramId] && formData[paramId].includes(optionId)){
@@ -184,15 +186,27 @@ class Product {
   thisProduct.priceElem.innerHTML = price;
 
   }
+  initAmountWidget(){
+    const thisProduct = this
+
+    thisProduct.amountWidget = new amountWidget(thisProduct.amountWidgetElem)
+  }
   }
 
+  class amountWidget{
+    constructor(element){
+      const thisWidget = this;
 
+      console.log('AmoutWidget:', thisWidget)
+      console.log('constructor argments:', element)
+    }
+  }
 
 
   const app = {
     initMenu: function(){
       const thisApp = this
-      console.log('thisApp.data:', thisApp.data);
+     // console.log('thisApp.data:', thisApp.data);
       
       for(let productData in thisApp.data.products){
         new Product(productData, thisApp.data.products[productData]);
@@ -206,11 +220,11 @@ class Product {
 
     init: function(){
       const thisApp = this;
-      console.log('*** App starting ***');
-      console.log('thisApp:', thisApp);
-      console.log('classNames:', classNames);
-      console.log('settings:', settings);
-      console.log('templates:', templates);
+     // console.log('*** App starting ***');
+    //  console.log('thisApp:', thisApp);
+     // console.log('classNames:', classNames);
+      //console.log('settings:', settings);
+      //console.log('templates:', templates);
       
       thisApp.initData();
       thisApp.initMenu();
