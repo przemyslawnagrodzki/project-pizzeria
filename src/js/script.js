@@ -197,8 +197,8 @@ class Product {
     constructor(element){
       const thisWidget = this;
 
-      console.log('AmoutWidget:', thisWidget)
-      console.log('constructor argments:', element)
+      console.log('AmountWidget:', thisWidget)
+      console.log('constructor arguments:', element)
 
       thisWidget.getElements(element);
       thisWidget.setValue(thisWidget.input.value)
@@ -224,6 +224,21 @@ class Product {
       if(thisWidget.value !== newValue && !isNaN(newValue)){ 
         thisWidget.value = newValue
       }
+    }
+    initActions(){
+      thisWidget.input.addEventListener('change', function() {
+      thisWidget.setValue(thisWidget.input.value)
+      })
+      
+      thisWidget.linkDecrease.addEventListener('click', function(event) {
+        event.preventDefault()
+        thisWidget.setValue(thisWidget.value - 1)
+      })
+      
+      thisWidget.linkIncrease.addEventListener('click', function(event){
+        event.preventDefault()
+        thisWidget.setValue(thisWidget.value + 1)
+      })
     }
   }
 
