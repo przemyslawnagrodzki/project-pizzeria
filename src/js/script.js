@@ -221,7 +221,7 @@ class Product {
       thisWidget.value = newValue
       thisWidget.input.value = thisWidget.value
 
-      if(thisWidget.value !== newValue && !isNaN(newValue)){ 
+      if(thisWidget.value !== newValue && !isNaN(newValue) && newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax){ 
         thisWidget.value = newValue
       }
     }
