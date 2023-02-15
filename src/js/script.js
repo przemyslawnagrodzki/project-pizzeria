@@ -204,6 +204,8 @@ class Product {
     constructor(element){
       const thisWidget = this;
 
+      thisWidget.value = settings.amountWidget.defaultValue
+
       console.log('AmountWidget:', thisWidget)
       console.log('constructor arguments:', element)
 
