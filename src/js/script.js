@@ -188,6 +188,7 @@
       price *= thisProduct.amountWidget.value;  
   
       // update calculated price in the HTML
+      thisProduct.priceSingle = price
       thisProduct.priceElem.innerHTML = price;
 
     }
@@ -203,7 +204,7 @@
     addToCart(){
       const thisProduct = this
 
-      app.cart.add(thisProduct)
+      app.cart.add(productSummary)
     }
 
     prepareCartProduct(){
@@ -212,11 +213,47 @@
 
         id: thisProduct.id,
         name: thisProduct.data.name,
-        amount: thisProduct.amountWidget.value
+        amount: thisProduct.amountWidget.value,
+        priceSingle: thisProduct.priceSingle,
+        price: thisProduct.priceSingle*thisProduct.amountWidget.value,
+        params: 
+        
+      }
+      return productSummary
+    }
+    prepareCartProductParams(){
+
+        const thisProduct = this;
+        //  console.log(this.processOrder)
+      
+        // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
+        const formData = utils.serializeFormToObject(thisProduct.form);
+        // console.log('formData', formData);
+        params = {
+
+        }
+        // for every category (param)...
+        for(let paramId in thisProduct.data.params) {
+          // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
+          const param = thisProduct.data.params[paramId];
+          // console.log(paramId, param);
+  
+          // for every option in this category
+          for(let optionId in param.options) {
+            // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
+            const option = param.options[optionId];
+            // console.log(optionId, option);
+            // check if there is param with a name of paramId in formData and if it includes optionId
+            if(formData[paramId] && formData[paramId].includes(optionId)) { 
+              }
+            }
+          }
+        return params
+        } 
       
       }
-    }
-  }
+    
+  
 
   class AmountWidget {
     constructor(element){
