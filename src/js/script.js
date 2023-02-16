@@ -205,6 +205,17 @@
 
       app.cart.add(thisProduct)
     }
+
+    prepareCartProduct(){
+      const thisProduct = this
+      productSummary = {
+
+        id: thisProduct.id,
+        name: thisProduct.data.name,
+        amount: thisProduct.amountWidget.value
+      
+      }
+    }
   }
 
   class AmountWidget {
