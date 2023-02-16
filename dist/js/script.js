@@ -88,7 +88,7 @@
     }
     getElements(){
       const thisProduct = this;
-  
+      thisProduct.dom = {}
       thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
       thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
@@ -258,6 +258,25 @@
     }
   }
 
+  class Cart{
+    constructor(element){
+      const thisCart = this
+
+      thisCart.products = []
+
+      thisCart.getElements(element)
+
+      console.log('new Cart', thisCart)
+    }
+
+    getElements(element){
+      const thisCart = this
+
+      thisCart.dom = {}
+
+      thisCart.dom.wrapper = element
+    }
+  }
 
   const app = {
     initMenu: function(){
