@@ -307,7 +307,9 @@
     announce(){
       const thisWidget = this;
 
-      const event = new Event ('updated');
+      const event = new CustomEvent ('updated', {
+        bubbles: true
+      });
       thisWidget.element.dispatchEvent(event);
     }
   }
@@ -346,7 +348,10 @@
       thisCart = this
 
       thisCart.dom.toggleTrigger.addEventListener('click', function(){
-        thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive)
+      thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive)
+      })
+      thisCart.dom.productList.addEventListener('updated', function(){
+        thisCart.update()
       })
     }
 
@@ -381,6 +386,14 @@
       }
     
     console.log(totalPrice)
+
+    thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber
+    thisCart.dom.subtotalPrice.innerHTML = thisCart.subtotalPrice
+    thisCart.dom.totalPrice.innerHTML = thisCart.totalPrice
+    thisCart.dom.deliveryFee.innerHTML = thisCart.deliveryFee
+    if(totalNumber == 0){
+      thisCart.deliveryFee == 0
+    }
   }
   }
 
