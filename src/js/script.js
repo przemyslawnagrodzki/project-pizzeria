@@ -2,7 +2,7 @@
 /* global Handlebars, utils, dataSource */ // eslint-disable-line no-unused-vars
 
 {
-  'use strict';
+  'use strict' ;
 
   const select = {
     templateOf: {
@@ -353,6 +353,9 @@
       thisCart.dom.productList.addEventListener('updated', function(){
         thisCart.update()
       })
+      thisCart.dom.productList.addEventListener('remove', function(){
+        thisCart.remove()
+      })
     }
 
     add(menuProduct){
@@ -395,6 +398,18 @@
       thisCart.deliveryFee == 0
     }
   }
+
+  remove(cartProduct){
+    const thisCart = this
+
+    const cartProduct = document.querySelector('cartProduct')
+    cartProduct.remove()
+
+    const indexOfProduct = thisCart.products.indexOf('product')
+    thisCart.products.splice(indexOfProduct, 1)
+    
+    thisCart.update()
+  }
   }
 
   class CartProduct {
@@ -414,6 +429,7 @@
 
     thisCartProduct.initAmountWidget()
 
+    thisCartProduct.initActions()
     }
 
     getElements(element){
@@ -437,6 +453,31 @@
       thisCartProduct.dom.innerHTML = thisCartProduct.price 
       
       });
+    }
+
+    remove(){
+      const thisCartProduct = this
+
+      const event = new CustomEvent('remove', {
+        bubbles: true,
+        detail: {
+          cartProduct: thisCartProduct,
+        },
+      })
+
+      thisCartProduct.dom.wrapper.dispatchEvent(event)
+    }
+
+    initActions(){
+      thisCartProduct = this
+
+      thisCartProduct.dom.edit.addEventListener('click', function(event){
+        event.preventDefault()
+      })
+      thisCartProduct.dom.remove.addEventListener('click', function(event){
+        event.preventDefault()
+        thisCartProduct.remove()
+      })
     }
   }
 
