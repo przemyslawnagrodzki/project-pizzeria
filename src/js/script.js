@@ -94,6 +94,7 @@
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
       thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
       thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
+    
     }
     initAccordion(){
       const thisProduct = this;
@@ -344,9 +345,13 @@
     }
 
     add(menuProduct){
-      // const thisCart = this
+       const thisCart = this
 
-      console.log('adding product', menuProduct)
+      console.log(menuProduct, 'adding product')
+      const generatedHTML =  templates.menuProduct(thisCart.data);
+      // console.log(generatedHTML)
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+      thisCart.dom.productList.appendChild(generatedDOM);
     }
   }
 
