@@ -329,7 +329,13 @@
     getElements(element){
       const thisCart = this
 
-      thisCart.dom = {}
+      thisCart.dom = {
+        deliveryFee = this.update.deliveryFee,
+        subtotalPrice = this.update.subtotalPrice,
+        totalPrice = this.update.totalPrice,
+        totalNumber = this.update.totalNumber
+
+      }
 
       thisCart.dom.wrapper = element
 
