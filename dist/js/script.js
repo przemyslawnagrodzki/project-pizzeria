@@ -2,7 +2,7 @@
 /* global Handlebars, utils, dataSource */ // eslint-disable-line no-unused-vars
 
 {
-  'use strict';
+  'use strict' ;
 
   const select = {
     templateOf: {
@@ -94,6 +94,7 @@
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
       thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
       thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
+    
     }
     initAccordion(){
       const thisProduct = this;
@@ -129,6 +130,7 @@
     
       thisProduct.cartButton.addEventListener('click', function(event){
         event.preventDefault();
+        thisProduct.addToCart();
         thisProduct.processOrder();
       });
     }
@@ -187,6 +189,7 @@
       price *= thisProduct.amountWidget.value;  
   
       // update calculated price in the HTML
+      thisProduct.priceSingle = price
       thisProduct.priceElem.innerHTML = price;
 
     }
@@ -198,14 +201,67 @@
         thisProduct.processOrder();
       });
     }
-  }
+
+    addToCart(){
+      const thisProduct = this
+
+      app.cart.add(productSummary)
+    }
+
+    prepareCartProduct(){
+      const thisProduct = this
+      productSummary = {
+
+        id: thisProduct.id,
+        name: thisProduct.data.name,
+        amount: thisProduct.amountWidget.value,
+        priceSingle: thisProduct.priceSingle,
+        price: thisProduct.priceSingle*thisProduct.amountWidget.value,
+        params: thisProduct.prepareCartProductParams()
+        
+      }
+      return productSummary
+    }
+    prepareCartProductParams(){
+
+        const thisProduct = this;
+        //  console.log(this.processOrder)
+      
+        // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
+        const formData = utils.serializeFormToObject(thisProduct.form);
+        // console.log('formData', formData);
+        params = {
+
+        }
+        // for every category (param)...
+        for(let paramId in thisProduct.data.params) {
+          // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
+          const param = thisProduct.data.params[paramId];
+          // console.log(paramId, param);
+  
+          // for every option in this category
+          for(let optionId in param.options) {
+            // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
+            const option = param.options[optionId];
+            // console.log(optionId, option);
+            // check if there is param with a name of paramId in formData and if it includes optionId
+            if(formData[paramId] && formData[paramId].includes(optionId)) { 
+              }
+            }
+          }
+        return params
+        } 
+      
+      }
+    
+  
 
   class AmountWidget {
     constructor(element){
       const thisWidget = this;
 
-      console.log('AmountWidget:', thisWidget);
-      console.log('constructor arguments:', element);
+     // console.log('AmountWidget:', thisWidget);
+     // console.log('constructor arguments:', element);
 
       thisWidget.getElements(element);
       thisWidget.setValue(thisWidget.input.value || settings.amountWidget.defaultValue);
@@ -251,7 +307,9 @@
     announce(){
       const thisWidget = this;
 
-      const event = new Event ('updated');
+      const event = new CustomEvent ('updated', {
+        bubbles: true
+      });
       thisWidget.element.dispatchEvent(event);
     }
   }
@@ -267,13 +325,19 @@
 
       thisCart.initActions();
 
-      console.log('new Cart', thisCart)
+    //  console.log('new Cart', thisCart)
     }
 
     getElements(element){
       const thisCart = this
 
-      thisCart.dom = {}
+      thisCart.dom = {
+        deliveryFee: this.update.deliveryFee,
+        subtotalPrice: this.update.subtotalPrice,
+        totalPrice: this.update.totalPrice,
+        totalNumber: this.update.totalNumber
+
+      }
 
       thisCart.dom.wrapper = element
 
@@ -284,7 +348,135 @@
       thisCart = this
 
       thisCart.dom.toggleTrigger.addEventListener('click', function(){
-        thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive)
+      thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive)
+      })
+      thisCart.dom.productList.addEventListener('updated', function(){
+        thisCart.update()
+      })
+      thisCart.dom.productList.addEventListener('remove', function(){
+        thisCart.remove()
+      })
+    }
+
+    add(menuProduct){
+       const thisCart = this
+
+     // console.log(menuProduct, 'adding product')
+      const generatedHTML =  templates.menuProduct(thisCart.data);
+      // console.log(generatedHTML)
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+      thisCart.dom.productList.appendChild(generatedDOM);
+
+      thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
+    //  console.log('thisCart.products', thisCart.products);
+      thisCart.update()
+    }
+
+    update(){
+      const thisCart = this
+      const deliveryFee = settings.cart.defaultDeliveryFee
+      let totalNumber = 0
+      let subtotalPrice = 0
+      for(let cartProduct of thisCart.products){
+        thisCart.totalNumber += cartProduct.amount
+        thisCart.subtotalPrice += cartProduct.price
+      }
+      if(totalNumber !== 0) {
+      thisCart.totalPrice = deliveryFee + thisCart.subtotalPrice
+    }
+      else {
+        thisCart.totalPrice = 0
+      }
+    
+    console.log(totalPrice)
+
+    thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber
+    thisCart.dom.subtotalPrice.innerHTML = thisCart.subtotalPrice
+    thisCart.dom.totalPrice.innerHTML = thisCart.totalPrice
+    thisCart.dom.deliveryFee.innerHTML = thisCart.deliveryFee
+    if(totalNumber == 0){
+      thisCart.deliveryFee == 0
+    }
+  }
+
+  remove(cartProduct){
+    const thisCart = this
+
+    const cartProduct = document.querySelector('cartProduct')
+    cartProduct.remove()
+
+    const indexOfProduct = thisCart.products.indexOf('product')
+    thisCart.products.splice(indexOfProduct, 1)
+    
+    thisCart.update()
+  }
+  }
+
+  class CartProduct {
+    constructor(menuProduct, element){
+    const thisCartProduct = this
+        
+    thisCartProduct.id = menuProduct.id;
+    thisCartProduct.name = menuProduct.name;
+    thisCartProduct.amount = menuProduct.amount;
+    thisCartProduct.priceSingle = menuProduct.priceSingle;
+    thisCartProduct.price = menuProduct.price;
+    thisCartProduct.params = menuProduct.params;
+
+    thisCartProduct.getElements(element)
+    
+   // console.log(thisCartProduct)
+
+    thisCartProduct.initAmountWidget()
+
+    thisCartProduct.initActions()
+    }
+
+    getElements(element){
+      const thisCartProduct = this
+      thisCartProduct.dom = {
+
+      }
+      thisCartProduct.dom.wrapper = element
+      thisCartProduct.dom.amountWidget = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.amountWidget)
+      thisCartProduct.dom.price = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.price)
+      thisCartProduct.dom.edit =thisCartProduct.dom.wrapper.querySelector(select.cartProduct.edit)
+      thisCartProduct.dom.remove =thisCartProduct.dom.wrapper.querySelector(select.cartProduct.remove)
+    }
+    initAmountWidget(){
+      const thisCartProduct = this;
+
+      thisCartProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+      thisCartProduct.amountWidgetElem.addEventListener('updated', function() {
+      thisCartProduct.amount = thisCartProduct.amountWidget.value
+      thisCartProduct.price = thisCartProduct.amount * thisCartProduct.priceSingle
+      thisCartProduct.dom.innerHTML = thisCartProduct.price 
+      
+      });
+    }
+
+    remove(){
+      const thisCartProduct = this
+
+      const event = new CustomEvent('remove', {
+        bubbles: true,
+        detail: {
+          cartProduct: thisCartProduct,
+        },
+      })
+
+      thisCartProduct.dom.wrapper.dispatchEvent(event)
+    }
+
+    initActions(){
+      thisCartProduct = this
+
+      thisCartProduct.dom.edit.addEventListener('click', function(event){
+        event.preventDefault()
+      })
+      thisCartProduct.dom.remove.addEventListener('click', function(event){
+        event.preventDefault()
+        thisCartProduct.remove()
       })
     }
   }
