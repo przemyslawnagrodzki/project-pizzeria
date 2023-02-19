@@ -217,7 +217,7 @@
         amount: thisProduct.amountWidget.value,
         priceSingle: thisProduct.priceSingle,
         price: thisProduct.priceSingle*thisProduct.amountWidget.value,
-        params: 
+        params: thisProduct.prepareCartProductParams()
         
       }
       return productSummary
@@ -332,10 +332,10 @@
       const thisCart = this
 
       thisCart.dom = {
-        deliveryFee = this.update.deliveryFee,
-        subtotalPrice = this.update.subtotalPrice,
-        totalPrice = this.update.totalPrice,
-        totalNumber = this.update.totalNumber
+        deliveryFee: this.update.deliveryFee,
+        subtotalPrice: this.update.subtotalPrice,
+        totalPrice: this.update.totalPrice,
+        totalNumber: this.update.totalNumber
 
       }
 
