@@ -58,6 +58,8 @@ import Cart from './components/Cart.js'
       thisApp.initData();
       thisApp.initCart();
     },
+
+    
   };
 
   app.init();
