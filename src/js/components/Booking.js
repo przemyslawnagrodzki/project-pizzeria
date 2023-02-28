@@ -1,36 +1,33 @@
-import {select} from '../settings.js'
-import AmountWidget from './AmountWidget.js'
-
-export default Booking
+import {select, templates } from '../settings.js';
+import AmountWidget from './AmountWidget.js';
 
 class Booking {
-    constructor(){
-        thisBooking = this
+  constructor(element){
+    const thisBooking = this;
 
-        thisBooking.element = element
-        thisBooking.render()
-        thisBooking.initWidgets()
-    }
+    thisBooking.element = element;
+    thisBooking.render(element);
+    thisBooking.initWidgets();
+  }
 
-    render(element){
-        thisBooking = this
+  render(element){
+    const thisBooking = this;
 
-       generatedHTML = templates.bookingWidget()
-       thisBooking.dom = {} 
-       thisBooking.dom.wrapper = element
-        thisBooking.dom.wrapper.innerHTML = generatedHTML
+    const generatedHTML = templates.bookingWidget();
+    thisBooking.dom = {}; 
+    thisBooking.dom.wrapper = element;
+    thisBooking.dom.wrapper.innerHTML = generatedHTML;
 
-        dom.peopleAmount = document.querySelector(select.booking.peopleAmount)
-        dom.hoursAmount = document.querySelector(select.booking.hoursAmount)
-    }
+    thisBooking.dom.peopleAmount = document.querySelector(select.booking.peopleAmount);
+    thisBooking.dom.hoursAmount = document.querySelector(select.booking.hoursAmount);
+  }
 
-    initWidgets(){
-        const thisApp = this
+  initWidgets(){
+    const thisBooking = this;
 
-        thisBooking.peopleAmountWidget = new AmountWidget(thisBooking.dom.peopleAmount);
-        thisBooking.dom.peopleAmount.addEventListener()
-
-        thisBooking.hoursAmountWidget = new AmountWidget(thisBooking.dom.hoursAmount);
-        thisBooking.dom.hoursAmount.addEventListener()
-    }
+    thisBooking.peopleAmountWidget = new AmountWidget(thisBooking.dom.peopleAmount);
+    thisBooking.hoursAmountWidget = new AmountWidget(thisBooking.dom.hoursAmount);
+  }
 }
+
+export default Booking;

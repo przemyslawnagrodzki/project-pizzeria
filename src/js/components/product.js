@@ -151,17 +151,15 @@ class Product {
 
     addToCart(){
       const thisProduct = this;
-
-     // 
-
-     const event = CustomEvent('add-to-cart', {
-      bubbles: true,
-      detail: {
-        product: thisProduct
-      }
-     } )
-
-     thisProduct.element.dispatchEvent(event)
+  
+      const event = new CustomEvent('add-to-cart', {
+        bubbles: true,
+        detail: {
+          product: thisProduct.prepareCartProduct()
+        }
+      });
+  
+      thisProduct.element.dispatchEvent(event);
     }
 
     prepareCartProduct(){
