@@ -62,6 +62,9 @@
   </header>
 
   <div id="pages">
+    <section id="main-page">
+      <div id="main-wrapper container"></div>
+    </section>
     <section id="order">
       <div id="product-list" class="product-list container"></div>
     </section>
@@ -240,6 +243,103 @@
         </div>
       </form>
     </div>
+  </script>
+  <script id="template=-main-page" type="text/x-handlebars-template">
+    <div class="constainer">
+      <div class="links">
+        <a href="order" class="link-btn">
+          <div class="link-btn-wrapper">
+            <p class="link-title">ORDER ONLINE</p>
+            <img src="images/assets/pizza-1.jpg" title="pizza">
+          </div>
+        </a>
+        <a href="booking" class="link-btn">
+          <div class="link-btn-wrapper">
+            <p class="link-title">BOOK A TABLE</p>
+            <img src="images/assets/pizza-2.jpg" title="table-of-food">
+          </div>
+        </a>
+        <a href="info" class="link-btn">
+          <div class="link-btn-wrapper">
+            <p class="link-title">OPENING HOURS</p>
+            <p class="link-subtitle">TUE-SUN, 12PM-12AM</p>
+          </div>  
+        </a>
+      </div>
+    </div>
+    <div class="carousel" data-flickity='{"autoPlay": true}'>
+      <div class="carousel-cell">
+        <div class="carousel-img">
+          <img src="images/assets/pizza-3.jpg" title="eating-women">
+        </div>
+        <div class="carousel-txt">
+          <h1>AMAZING SERVICE!</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <p class="author">- Michael di Saint'Antonio</p>
+        </div>
+      </div>
+      <div class="carousel-cell">
+        <div class="carousel-img">
+          <img src="images/assets/pizza-4.jpg" title="waiter">
+        </div>
+        <div class="carousel-txt">
+          <h1>FANTASTIC ATMOSPHERE!</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <p class="author">- Lisandro d'Allessandro</p>
+        </div>
+      </div>
+      <div class="carousel-cell">
+        <div class="carousel-img">
+          <img src="images/assets/pizza-5.jpg" title="plates">
+        </div>
+        <div class="carousel-txt">
+          <h1>NICE STAFF!</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <p class="author">- Abdelhamid Muchakchian</p>
+        </div>
+      </div>
+    </div>
+    <div class="gallery">
+      <div class="gallery-cell">
+        <div class="img">
+          <img src="images/assets/pizza-6.jpg" title="pizza-slices">
+        </div>
+        <div class="icons">
+          <i class="fas fa-solid fa-heart"></i>
+          <i class="fas fa-solid fa-share"></i>
+        </div>
+      </div>  
+      <div class="gallery-cell">
+        <div class="img">
+          <img src="images/assets/pizza-7.jpg" title="open">
+        </div>
+        <div class="icons">
+          <i class="fas fa-solid fa-heart"></i>
+          <i class="fas fa-solid fa-share"></i>
+        </div>
+      </div>
+      <div class="gallery-cell">
+        <div class="img">
+          <img src="images/assets/pizza-8.jpg" title="flour">
+        </div>
+        <div class="icons">
+          <i class="fas fa-solid fa-heart"></i>
+          <i class="fas fa-solid fa-share"></i>
+        </div>
+      </div>
+      <div class="gallery-cell">
+        <div class="img">
+          <img src="images/assets/pizza-9.jpg" title="window">
+        </div>
+        <div class="icons">
+          <i class="fas fa-solid fa-heart"></i>
+          <i class="fas fa-solid fa-share"></i>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <a href="footer-link" class="link">View more on Instagram</a>
+    </div>    
   </script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="vendor/range-slider.js"></script>
