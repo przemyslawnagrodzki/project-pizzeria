@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="vendor/range-slider.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 </head>
 <body>
 
@@ -246,7 +247,7 @@
     </div>
   </script>
   <script id="template=-main-page" type="text/x-handlebars-template">
-    <div class="constainer">
+    <div class="page-selector">
       <div class="links">
         <a href="order" class="link-btn">
           <div class="link-btn-wrapper">
@@ -261,7 +262,7 @@
           </div>
         </a>
         <a href="info" class="link-btn">
-          <div class="link-btn-wrapper">
+          <div class="link-btn-wrapper2">
             <p class="link-title">OPENING HOURS</p>
             <p class="link-subtitle">TUE-SUN, 12PM-12AM</p>
           </div>  
@@ -305,36 +306,44 @@
         <div class="img">
           <img src="images/assets/pizza-6.jpg" title="pizza-slices">
         </div>
-        <div class="icons">
-          <i class="fas fa-solid fa-heart"></i>
-          <i class="fas fa-solid fa-share"></i>
+        <div class="overlay">
+          <div class="icons">
+            <i class="fas fa-solid fa-heart"></i>
+            <i class="fas fa-solid fa-share"></i>
+          </div>
         </div>
       </div>  
       <div class="gallery-cell">
         <div class="img">
           <img src="images/assets/pizza-7.jpg" title="open">
         </div>
+        <div class="overlay">
         <div class="icons">
           <i class="fas fa-solid fa-heart"></i>
           <i class="fas fa-solid fa-share"></i>
+        </div>
         </div>
       </div>
       <div class="gallery-cell">
         <div class="img">
           <img src="images/assets/pizza-8.jpg" title="flour">
         </div>
-        <div class="icons">
-          <i class="fas fa-solid fa-heart"></i>
-          <i class="fas fa-solid fa-share"></i>
+        <div class="overlay">
+          <div class="icons">
+            <i class="fas fa-solid fa-heart"></i>
+            <i class="fas fa-solid fa-share"></i>
+          </div>
         </div>
       </div>
       <div class="gallery-cell">
         <div class="img">
           <img src="images/assets/pizza-9.jpg" title="window">
         </div>
-        <div class="icons">
-          <i class="fas fa-solid fa-heart"></i>
-          <i class="fas fa-solid fa-share"></i>
+        <div class="overlay"> 
+          <div class="icons">
+            <i class="fas fa-solid fa-heart"></i>
+            <i class="fas fa-solid fa-share"></i>
+          </div>
         </div>
       </div>
     </div>
@@ -346,5 +355,6 @@
   <script src="vendor/range-slider.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
   <script src="js/app.js" type="module"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 </body>
 </html>

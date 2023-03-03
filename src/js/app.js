@@ -2,8 +2,28 @@ import {settings, select, classNames} from './settings.js';
 import Product from './components/product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
+import MainPage from './components/main-page.js';
 
 const app = {   
+  initMainPage: function() {
+    const thisApp = this;
+
+    const mainPageWrapper = document.querySelector(select.containerOf.mainPagePage);
+
+    thisApp.mainPagePage = new MainPage(mainPageWrapper);
+
+    thisApp.mainPageLinks = document.querySelectorAll(select.mainPage.links);
+
+    for (let link of thisApp.mainPageLinks){
+      link.addEventListener('click', function(event) {
+        event.preventDefault();
+        const linkHref = link.getAttribute('href').replace('#', '');
+
+        thisApp.activatePage(linkHref);
+      });
+    }
+  },
+
   initPages: function(){
     const thisApp = this;
 
@@ -115,6 +135,7 @@ const app = {
     thisApp.initCart();
     thisApp.initPages();
     thisApp.initBooking();
+    thisApp.initMainPage();
   },
 
     
