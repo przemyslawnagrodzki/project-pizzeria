@@ -96,7 +96,7 @@ class Booking {
     thisBooking.updateDOM()
   }
 
-    thisBooking.makeBooked(date, hour, duration, table){
+    makeBooked(date, hour, duration, table){
       const thisBooking = this
 
       if(typeof thisBooking.booked[date] == 'undefined'){
@@ -112,6 +112,8 @@ class Booking {
 
       thisBooking.booked[date][hourBlock].push(table)
       }
+
+    thisBooking.booked.push(thisBooking.chooseTable)     
     }
 
     updateDOM(){
