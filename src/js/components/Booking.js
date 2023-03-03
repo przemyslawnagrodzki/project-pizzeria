@@ -174,9 +174,37 @@ class Booking {
       if(thisBooking.updateDOM){
         thisBooking.table.classList.remove('chosenTable')
       }
-
-
     }
+
+  sendBooking(){
+    const thisBooking = this
+
+    const url = settings.db.url + '/' + settings.db.booking;
+
+    const payload = {
+      "date": thisBooking.datePicker.value,
+      "hour": thisBooking.hourPicker.value,
+      "table": parseInt(thisBooking.chosenTable),
+      "duration": parseInt(thisBooking.peopleAmountWidget.value),
+      "ppl": parseInt(thisBooking.hoursAmountWidget.value),
+      "starters": [],
+      "phone": thisBooking.dom.phone.value,
+      "address": thisBooking.dom.address.value
+    };
+    for(let prod of thisCart.products) {
+      payload.products.push(prod.getData());
+    }
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    };
+  
+    fetch(url, options); 
+  }
 
   render(element){
     const thisBooking = this;
@@ -212,7 +240,11 @@ class Booking {
       chooseTable(event)
     })
     })
-  }
+    thisBooking.dom.submit.addEventListener('submit', function(event) {
+      event.preventDefault();
+      thisBooking.sendBooking();
+  })
+}
 }
 
 export default Booking;
