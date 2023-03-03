@@ -12,6 +12,7 @@ class Booking {
     thisBooking.render(element);
     thisBooking.initWidgets();
     thisBooking.getData()
+    thisBooking.chooseTable()
   }
 
   getData(){
@@ -147,6 +148,36 @@ class Booking {
       }
     }
 
+    chooseTable(event){
+      const thisBooking = this
+
+      const clickedElement = event.target
+      event.preventDefault()
+
+      const tableId = clickedElement.getAttribute(settings.booking.tableIdAttribute)
+
+      if(tableId){
+        if(clickedElement.contains(classNames.booking.tableBooked)){
+          alert('stolik zajęty!')
+        }
+        else {
+          if(clickedElement.classList.contains(classNames.chosenTable)){
+          clickedElement.classList.remove('chosenTable')
+          }
+          else{
+            thisBooking.table.classList.remove('chosenTable')
+            clickedElement.classList.add('chosenTable')
+          }
+          thisBooking.chosenTable = tableId
+        }
+      }
+      if(thisBooking.updateDOM){
+        thisBooking.table.classList.remove('chosenTable')
+      }
+
+
+    }
+
   render(element){
     const thisBooking = this;
 
@@ -162,6 +193,8 @@ class Booking {
     thisBooking.dom.hourPicker = document.querySelector(select.widgets.hourPicker.wrapper)
 
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables)
+  
+    thisBooking.dom.tablesWarapper = thisBooking.dom.wrapper.querySelector(select.booking.allTables)
   }
 
   initWidgets(){
@@ -173,6 +206,11 @@ class Booking {
     thisBooking.hourPickerWidget = new AmountWidget(thisBooking.dom.hourPicker)
     thisBooking.dom.wrapper.addEventListener('updated', function(){
       thisBooking.updateDOM
+
+    thisBooking.dom.wrapper.addEventListener('click', function(event){
+      event.preventDefault()
+      chooseTable(event)
+    })
     })
   }
 }
