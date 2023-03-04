@@ -2,7 +2,8 @@ export const select = {
   templateOf: {
     menuProduct: '#template-menu-product',
     cartProduct: '#template-cart-product', // CODE ADDED
-    bookingWidget: '#template-booking-widget'
+    bookingWidget: '#template-booking-widget',
+    mainPage: '#template-main-page',
   },
   containerOf: {
     menu: '#product-list',
