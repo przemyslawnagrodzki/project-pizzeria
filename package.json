@@ -9,7 +9,7 @@
         "init:files": "touch README.md src/index.html src/sass/style.scss src/js/script.js",
         "init:gitignore": "curl https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore -o .gitignore",
         "init:gitignore:custom": "echo \"dist\" >> .gitignore",
-        "test": "npm-run-all test:*",
+        "test": "npm-run-all -fix test:*",
         "test:html": "html-validate src/*.html",
         "test:js": "eslint src/js/",
         "test:scss": "stylelint src/sass/",

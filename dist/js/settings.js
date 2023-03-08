@@ -2,13 +2,15 @@ export const select = {
   templateOf: {
     menuProduct: '#template-menu-product',
     cartProduct: '#template-cart-product', // CODE ADDED
-    bookingWidget: '#template-booking-widget'
+    bookingWidget: '#template-booking-widget',
+    mainPage: '#template-main-page',
   },
   containerOf: {
     menu: '#product-list',
     cart: '#cart',
     pages: '#pages',
     booking: '.booking-wrapper',
+    mainPage: '.main-wrapper',
   },
   all: {
     menuProducts: '#product-list > .product',
@@ -61,10 +63,15 @@ export const select = {
     peopleAmount: '.people-amount',
     hoursAmount: '.hours-amount',
     tables: '.floor-plan .table',
-  },
+    allTables: '.floor-plan',
+    form: '.booking-form',
+    },
   nav: {
     links: '.main-nav a',
   },
+  mainPage: {
+    links: '.link-btn',
+  }
 };
 
 export const classNames = {
@@ -78,6 +85,7 @@ export const classNames = {
   booking: {
     loading: 'loading',
     tableBooked: 'booked',
+    chosenTable: 'chosenTable'
   },
   nav: {
     active: 'active',
@@ -109,7 +117,7 @@ export const settings = {
   db: {
     products: 'products',
     orders: 'orders',
-    url: '//localhost:3131',
+    url: '//' + window.location.hostname + (window.location.hostname=='localhost' ? ':3131' : ''),
     bookings: 'bookings',
     events: 'events',
     dateStartParamKey: 'date_gte',
@@ -123,4 +131,5 @@ export const templates = {
   menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
   cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
   bookingWidget: Handlebars.compile(document.querySelector(select.templateOf.bookingWidget).innerHTML),
+  mainPage: Handlebars.compile(document.querySelector(select.templateOf.mainPage).innerHTML)
 };
