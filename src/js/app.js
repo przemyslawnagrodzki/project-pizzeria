@@ -8,7 +8,7 @@ const app = {
   initMainPage: function() {
     const thisApp = this;
 
-    const mainPageWrapper = document.querySelector(select.containerOf.mainPagePage);
+    const mainPageWrapper = document.querySelector(select.containerOf.mainPage);
 
     thisApp.mainPagePage = new MainPage(mainPageWrapper);
 

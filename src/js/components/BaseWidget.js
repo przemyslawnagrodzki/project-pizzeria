@@ -18,25 +18,14 @@ class BaseWidget {
         const thisWidget = this
 
         const newValue = thisWidget.parseValue(value)
-    }
-
-    setValue(value){
-        const thisWidget = this;
-  
-        const newValue = thisWidget.parseInt(value);
   
         /* TODO Add validation */
-        if(thisWidget.correctValue !== newValue && !isNaN(newValue) && thisWidget.isValid(newValue)){ 
+        if(thisWidget.isValid(newValue)){ 
           thisWidget.correctValue = newValue;
         }
   
         thisWidget.renderValue()
         thisWidget.announce();
-      }
-      setValue(value){
-        const thisWidget = this 
-
-        const newValue = thisWidget.parseValue(value)
       }
 
       parseValue(value){

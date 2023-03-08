@@ -1,4 +1,4 @@
-import { select, templates } from '../settings.js';
+import { templates } from '../settings.js';
 
 class MainPage {
     constructor(element) {
@@ -21,14 +21,9 @@ class MainPage {
 
   }
 
-    initWidgets(){
+  initWidgets(){
     const thisMainPage = this;
-
-    thisMainPage.carousel = new Flickity (thisMainPage.dom.carousel, {
-      contain: true,
-      autoPlay: true
-    })
-}
+  }
 }
 
 export default MainPage
