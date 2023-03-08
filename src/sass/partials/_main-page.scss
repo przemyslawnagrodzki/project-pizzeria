@@ -40,6 +40,7 @@
     height: 140px;
     display: flex;
     flex-wrap: 100%;
+    background: rgb(255, 0, 98);
 }
 
   .gallery {
@@ -68,6 +69,10 @@
 }
 
 .icons:hover{
+   color: rgb(192, 73, 83);
+}
+
+.icons {
     display: flex;
     flex-direction: row;
     align-items: center;
