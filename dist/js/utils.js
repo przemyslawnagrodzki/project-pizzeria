@@ -78,4 +78,4 @@ utils.addDays = function(dateStr, days){
   return dateObj;
 };
 
-export default utils
+export default utils;

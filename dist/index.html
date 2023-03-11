@@ -247,109 +247,117 @@
     </div>
   </script>
   <script id="template-main-page" type="text/x-handlebars-template">
-    <div class="page-selector">
-      <div class="links">
-        <a href="order" class="link-btn">
-          <div class="link-btn-wrapper">
-            <p class="link-title">ORDER ONLINE</p>
-            <img src="images/assets/pizza-1.jpg" title="pizza">
+    <div class="main">
+      <div class="main__links">
+        <a href="#order" class="link-btn">
+          <div class="link-btn__wrapper">
+            <p class="main__title">order online</p>
+            <img src="images/assets/pizza-1.jpg" alt="pizza" />
           </div>
         </a>
-        <a href="booking" class="link-btn">
-          <div class="link-btn-wrapper">
-            <p class="link-title">BOOK A TABLE</p>
-            <img src="images/assets/pizza-2.jpg" title="table-of-food">
+        <a href="#booking" class="link-btn">
+          <div class="link-btn__wrapper">
+            <p class="main__title">book a table</p>
+            <img src="images/assets/pizza-2.jpg" alt="table full of food" />
           </div>
         </a>
-        <a href="info" class="link-btn">
-          <div class="link-btn-wrapper2">
-            <p class="link-title">OPENING HOURS</p>
-            <p class="link-subtitle">TUE-SUN, 12PM-12AM</p>
-          </div>  
-        </a>
+      </div>
+      <div class="main__info">
+        <p class="main__title">opening hours:</p>
+        <p class="main__subtitle">tue-sun, 12pm - 12am</p>
       </div>
     </div>
     <div class="carousel" data-flickity='{"autoPlay": true}'>
       <div class="carousel-cell">
-        <div class="carousel-img">
+        <div class="carousel-cell__image">
           <img src="images/assets/pizza-3.jpg" title="eating-women">
         </div>
-        <div class="carousel-txt">
+        <div class="carousel-cell__description">
           <h1>AMAZING SERVICE!</h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          <p class="author">- Michael di Saint'Antonio</p>
+          <p class="italic">- Michael di Saint'Antonio</p>
         </div>
       </div>
       <div class="carousel-cell">
-        <div class="carousel-img">
+        <div class="carousel-cell__image">
           <img src="images/assets/pizza-4.jpg" title="waiter">
         </div>
-        <div class="carousel-txt">
+        <div class="carousel-cell__description">
           <h1>FANTASTIC ATMOSPHERE!</h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          <p class="author">- Lisandro d'Allessandro</p>
+          <p class="italic">- Lisandro d'Allessandro</p>
         </div>
       </div>
       <div class="carousel-cell">
-        <div class="carousel-img">
+        <div class="carousel-cell__image">
           <img src="images/assets/pizza-5.jpg" title="plates">
         </div>
-        <div class="carousel-txt">
+        <div class="carousel-cell__description">
           <h1>NICE STAFF!</h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          <p class="author">- Abdelhamid Muchakchian</p>
+          <p class="italic">- Abdelhamid Muchakchian</p>
         </div>
       </div>
     </div>
     <div class="gallery">
-      <div class="gallery-cell">
-        <div class="img">
-          <img src="images/assets/pizza-6.jpg" title="pizza-slices">
-        </div>
-        <div class="overlay">
-          <div class="icons">
+      <div class="gallery__image">
+        <div class="gallery__image__overlay">
+          <div class="gallery__image__overlay__icons">
             <i class="fas fa-solid fa-heart"></i>
             <i class="fas fa-solid fa-share"></i>
           </div>
         </div>
-      </div>  
-      <div class="gallery-cell">
-        <div class="img">
-          <img src="images/assets/pizza-7.jpg" title="open">
-        </div>
-        <div class="overlay">
-        <div class="icons">
-          <i class="fas fa-solid fa-heart"></i>
-          <i class="fas fa-solid fa-share"></i>
-        </div>
-        </div>
+        <img src="images/assets/pizza-4.jpg" title="Starters" />
       </div>
-      <div class="gallery-cell">
-        <div class="img">
-          <img src="images/assets/pizza-8.jpg" title="flour">
-        </div>
-        <div class="overlay">
-          <div class="icons">
+      <div class="gallery__image">
+        <div class="gallery__image__overlay">
+          <div class="gallery__image__overlay__icons">
             <i class="fas fa-solid fa-heart"></i>
             <i class="fas fa-solid fa-share"></i>
           </div>
         </div>
+        <img src="images/assets/pizza-5.jpg" title="Vegetables" />
       </div>
-      <div class="gallery-cell">
-        <div class="img">
-          <img src="images/assets/pizza-9.jpg" title="window">
-        </div>
-        <div class="overlay"> 
-          <div class="icons">
+      <div class="gallery__image">
+        <div class="gallery__image__overlay">
+          <div class="gallery__image__overlay__icons">
             <i class="fas fa-solid fa-heart"></i>
             <i class="fas fa-solid fa-share"></i>
           </div>
         </div>
+        <img src="images/assets/pizza-6.jpg" title="Pizza-slices" />
+      </div>
+      <div class="gallery__image">
+        <div class="gallery__image__overlay">
+          <div class="gallery__image__overlay__icons">
+            <i class="fas fa-solid fa-heart"></i>
+            <i class="fas fa-solid fa-share"></i>
+          </div>
+        </div>
+        <img src="images/assets/pizza-7.jpg" title="Open" />
+      </div>
+      <div class="gallery__image">
+        <div class="gallery__image__overlay">
+          <div class="gallery__image__overlay__icons">
+            <i class="fas fa-solid fa-heart"></i>
+            <i class="fas fa-solid fa-share"></i>
+          </div>
+        </div>
+        <img src="images/assets/pizza-8.jpg" title="Flour" />
+      </div>
+      <div class="gallery__image">
+        <div class="gallery__image__overlay">
+          <div class="gallery__image__overlay__icons">
+            <i class="fas fa-solid fa-heart"></i>
+            <i class="fas fa-solid fa-share"></i>
+          </div>
+        </div>
+        <img src="images/assets/pizza-9.jpg" title="Window" />
       </div>
     </div>
-    <div class="footer">
-      <a href="footer-link" class="link">View more on Instagram</a>
-    </div>    
+    <div class="gallery-link">
+      <a href="#">View more on Instagram</a>
+    </div>
   </script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="vendor/range-slider.js"></script>

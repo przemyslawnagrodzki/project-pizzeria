@@ -1,15 +1,15 @@
 import { templates } from '../settings.js';
 
 class MainPage {
-    constructor(element) {
-        const thisMainPage = this
+  constructor(element) {
+    const thisMainPage = this;
 
-        thisMainPage.render(element)
-        thisMainPage.initWidgets()
-    }
+    thisMainPage.render(element);
+    thisMainPage.initWidgets();
+  }
 
-    render(element){
-    const thisMainPage = this
+  render(element){
+    const thisMainPage = this;
 
     const generatedHTML = templates.mainPage(element);
 
@@ -21,9 +21,6 @@ class MainPage {
 
   }
 
-  initWidgets(){
-    const thisMainPage = this;
-  }
 }
 
-export default MainPage
+export default MainPage;
